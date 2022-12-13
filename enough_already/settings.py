@@ -30,6 +30,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+CSRF_TRUSTED_ORIGINS = ['http://*', 'https://*', 'https://8000-jdj0-milestone4enough-ltjslehs2u5.ws-eu78.gitpod.io']
 
 # Application definition
 
@@ -71,7 +72,7 @@ TEMPLATES = [
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth', # allauth needs this from django
+                'django.contrib.auth.context_processors.auth',  # allauth
                 'django.contrib.messages.context_processors.messages',
             ],
         },
@@ -79,7 +80,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'enough_already.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
