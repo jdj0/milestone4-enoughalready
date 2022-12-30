@@ -3,7 +3,9 @@ from .models import Item
 
 
 def products(request):
+    """ A view to show... """
+    
     context = {
         'items': Item.objects.all()
     }
-    return render(request, "products.html")
+    return render(request, 'products/products.html', context)

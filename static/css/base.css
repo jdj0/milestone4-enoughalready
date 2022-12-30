@@ -11,6 +11,39 @@ html {
     color: #555; */
 }
 
+.products-background {
+    background: url('/static/media/thread.jpg') no-repeat center center fixed;
+    background-size: cover;
+    position: relative;
+    height: 25vh;
+    margin-bottom: 25px !important;
+    /* height: calc(100vh - 164px);
+    color: #555; */
+}
+
+.pr-text {
+    border: red;
+    border-width: 5px;
+    background-color: white;
+    color: black;
+    font-size: 5vw;
+    font-weight: bold;
+    margin: 0 auto;
+    padding: 10px;
+    width: 75%;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: screen;
+}
+
+
+.base-background{
+    background-color: #efddd4;
+}
+
 .ea-text {
     border: red;
     border-width: 5px;
@@ -54,3 +87,6 @@ html {
 .about-right {
     margin: 5%
 }
+
+/* Bootstrap template CSS */
+
