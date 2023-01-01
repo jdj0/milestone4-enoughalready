@@ -3,9 +3,6 @@
 
 {% block content %}
 <!--Main layout-->
-{% for item in items %}
-    {{ item.title }}
-{% endfor %}
 <main>
     <div class="container">
 
@@ -40,7 +37,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Outwears</a>
                     </li>
-
                 </ul>
                 <!-- Links -->
 
@@ -65,12 +61,12 @@
             <div class="row wow fadeIn">
                 <!--Grid column-->
                 <div class="col-lg-3 col-md-6 mb-4">
-                    {% for item in items %}
                     <!--Card-->
+                    {% for item in items %}
                     <div class="card">
                         <!--Card image-->
                         <div class="view overlay">
-                            <img src="" class="card-img-top" alt="">
+                            <img src="{{ item.image.url }}" class="card-img-top" alt="">
                             <a>
                                 <div class="mask rgba-white-slight"></div>
                             </a>
@@ -81,21 +77,20 @@
                         <div class="card-body text-center">
                             <!--Category & Title-->
                             <a href="" class="grey-text">
-                                <h5>Shirt</h5>
+                                <h5>{{ item.category }}</h5>
                             </a>
                             <h5>
                                 <strong>
                                     <a href="" class="dark-grey-text">{{ item.title }}
-                                        <span class="badge badge-pill danger-color">NEW</span>
                                     </a>
                                 </strong>
                             </h5>
                             <h4 class="font-weight-bold blue-text">
-                                <p></p>
+                                <p>Size: {{ item.size }}</p>
                             </h4>
 
                             <h4 class="font-weight-bold blue-text">
-                                <strong>"{{ item.price }}" </strong>
+                                <strong>£{{ item.price }}</strong>
                             </h4>
                         </div>
                         <!--Card content-->
