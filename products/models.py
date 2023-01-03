@@ -14,7 +14,7 @@ SIZE_CHOICES = (
     ('S', 'Small'),
     ('M', 'Medium'),
     ('L', 'Large'),
-    ('XL', 'Extra Large'),
+    ('XL', 'XL'),
     ('XXL', 'XXL'),
     ('XXXL', 'XXXL'),
     ('6', 'Six'),

@@ -7,8 +7,6 @@ html {
     background-size: cover;
     position: relative;
     height: 75vh;
-    /* height: calc(100vh - 164px);
-    color: #555; */
 }
 
 .products-background {
@@ -17,8 +15,6 @@ html {
     position: relative;
     height: 25vh;
     margin-bottom: 25px !important;
-    /* height: calc(100vh - 164px);
-    color: #555; */
 }
 
 .pr-text {
@@ -42,6 +38,15 @@ html {
 
 .base-background{
     background-color: #efddd4;
+}
+
+.navbar-brand{
+    font-weight: bold;
+    color: #dfcec5 !important;
+}
+
+.navbar-brand:hover{
+    color: #d3adc5 !important;
 }
 
 .ea-text {
@@ -86,6 +91,22 @@ html {
 .about-left,
 .about-right {
     margin: 5%
+}
+
+footer {
+    background-color: #dfcec5;
+    padding-bottom: 2.5px;
+}
+
+footer, a {
+    text-decoration: none !important;
+    color: #9a115f !important;
+}
+
+.footer-icons{
+    font-size: 150%;
+    margin: 5px;
+    margin-bottom: 10px;
 }
 
 /* Bootstrap template CSS */
