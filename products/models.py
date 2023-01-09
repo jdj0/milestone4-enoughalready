@@ -54,4 +54,4 @@ class Order(models.Model):
     items = models.ManyToManyField(OrderItem)
 
     def __str__(self):
-        return self.title
+        return self.user.username

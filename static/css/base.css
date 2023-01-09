@@ -2,6 +2,10 @@ html {
     height: 100%;
 }
 
+body{
+    background-color: #efddd4 !important;
+}
+
 .background {
     background: url('/static/media/thread.jpg') no-repeat center center fixed;
     background-size: cover;
@@ -34,7 +38,6 @@ html {
     transform: translate(-50%, -50%);
     mix-blend-mode: screen;
 }
-
 
 .base-background{
     background-color: #efddd4;
@@ -96,9 +99,11 @@ html {
 footer {
     background-color: #dfcec5;
     padding-bottom: 2.5px;
+    
+    margin-top: 25px !important;
 }
 
-footer, a {
+footer, a{
     text-decoration: none !important;
     color: #9a115f !important;
 }
@@ -109,5 +114,10 @@ footer, a {
     margin-bottom: 10px;
 }
 
-/* Bootstrap template CSS */
+.bag-container{
+    height: 95vh;
+}
 
+.page-footer{
+    padding-top: 5px !important;
+}
