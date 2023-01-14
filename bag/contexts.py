@@ -1,4 +1,6 @@
 from django.conf import settings
+from django.shortcuts import get_object_or_404
+from products.models import Item
 
 
 def bag_contents(request):
@@ -8,6 +10,17 @@ def bag_contents(request):
     item_count = 0
     delivery = 0
     grand_total = delivery + total
+    bag = request.session.get('bag', {})
+
+    for item_id, quantity in bag.items():
+        item = get_object_or_404(Item, pk=item_id)
+        total += quantity * item.price
+        item_count += quantity
+        bag_items.append({
+            'item:id': item_id,
+            'quantity': quantity,
+            'item': item,
+        })
 
     context = {
         'bag_items': bag_items,

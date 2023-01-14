@@ -46,7 +46,12 @@
             <a class="nav-link" href="{% url 'products' %}">Products</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'view_bag' %}"><i class="fa-solid fa-bag-shopping"></i> Bag</a>
+            <a class="nav-link" href="{% url 'view_bag' %}">
+              <i class="fa-solid fa-bag-shopping"></i> Bag
+              {% if bag_items %}
+                <span>({{ item_count }})</span>
+              {% endif %}
+            </a>
           </li>
         </ul>
       </div>

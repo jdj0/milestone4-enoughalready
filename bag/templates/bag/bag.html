@@ -12,7 +12,9 @@
         <div class="row">
             <div class="col">
                 {% if bag_items %}
-                    <div class="table-responsive"></div>
+                    <div class="table-responsive">
+                        {{ bag_items }}
+                    </div>
                 {% else %}
                 <p style="font-size: 2rem;" class="m-4">Which is looking pretty grim right now &#128556;</p>
                 <a href="{% url 'products' %}" class="btn btn-outline-black m-3">
