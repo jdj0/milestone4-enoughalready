@@ -2,29 +2,76 @@
 {% load static %}
 
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <h1 class="m-4">Your Shopping Bag</h1>
-            </div>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col">
-                {% if bag_items %}
-                    <div class="table-responsive">
-                        {{ bag_items }}
-                    </div>
-                {% else %}
-                <p style="font-size: 2rem;" class="m-4">Which is looking pretty grim right now &#128556;</p>
-                <a href="{% url 'products' %}" class="btn btn-outline-black m-3">
-                    <span class="icon">
-                        <i class="fa-sharp fa-solid fa-circle-arrow-left"></i>
-                    </span>
-                    <span>Keep Shopping</span>
-                </a>
-                {% endif %}
-            </div>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="m-4">Your Shopping Bag</h1>
         </div>
     </div>
+    <hr>
+    <div class="row">
+        <div class="col">
+            {% if bag_items %}
+            <div class="table-responsive">
+                <table class="table table-sm table-borderless">
+                    <thead class="text-black">
+                        <th scope="col">Product:</th>
+                        <th scope="col"></th>
+                        <th scope="col">Quantity:</th>
+                        <th scope="col">Price:</th>
+                    </thead>
+                    {% for x in bag_items %}
+                    <tr>
+                        <td class="w-25">
+                            <img class="img-fluid rounded" src="{{ x.item.image.url }}">
+                        </td>
+                        <td>
+                            <p>{{ x.item.title }}</p>
+                        </td>
+                        <td>
+                            <p>{{ x.item.quantity }}</p>
+                        </td>
+                        <td>
+                            <p>£{{ x.item.price }}</p>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td colspan="4">
+                            <p style="text-align: right;">Delivery: Always <span class="text-success">FREE</span></p>
+                            <p style="text-align: right;" class="mt-4"><strong>Grand Total: £{{ grand_total|floatformat:2 }}</strong></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                            <div class="d-flex justify-content-between mt-3">
+                                <a href="{% url 'products' %}" class="button-74">
+                                    <span class="icon">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span>Keep Shopping</span>
+                                </a>
+                                <a href="" class="button-74">
+                                    <span>Checkout</span>
+                                    <span class="icon">
+                                        <i class="fas fa-lock"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            {% else %}
+            <p style="font-size: 2rem;" class="m-4">Which is looking pretty grim right now &#128556;</p>
+            <a href="{% url 'products' %}" class="btn btn-outline-black m-3">
+                <span class="icon">
+                    <i class="fa-sharp fa-solid fa-circle-arrow-left"></i>
+                </span>
+                <span>Keep Shopping</span>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
 {% endblock %}

@@ -21,4 +21,3 @@ def product(request, item_id):
     }
 
     return render(request, 'products/product.html', context)
-    
