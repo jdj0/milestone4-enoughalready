@@ -127,6 +127,10 @@ footer, a{
     padding-top: 5px !important;
 }
 
+.remove-item{
+    cursor: pointer;
+}
+
 /* CSS Scan Button */
 
 .button-74 {
