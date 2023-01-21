@@ -30,7 +30,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-CSRF_TRUSTED_ORIGINS = ['http://*', 'https://*', 'https://8000-jdj0-milestone4enough-ltjslehs2u5.ws-eu82.gitpod.io']
+CSRF_TRUSTED_ORIGINS = ['http://*', 'https://*', 'https://8000-jdj0-milestone4enough-ltjslehs2u5.ws-eu83.gitpod.io']
 
 # Application definition
 
@@ -81,6 +81,8 @@ TEMPLATES = [
         },
     },
 ]
+
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 WSGI_APPLICATION = 'enough_already.wsgi.application'
 

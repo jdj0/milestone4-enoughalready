@@ -54,7 +54,7 @@
                                     <span class="icon">
                                         <i class="fas fa-chevron-left"></i>
                                     </span>
-                                    <span>Keep Shopping</span>
+                                    <span> Keep Shopping</span>
                                 </a>
                                 <a href="" class="button-74">
                                     <span>Checkout</span>
@@ -68,13 +68,13 @@
                 </table>
             </div>
             {% else %}
-            <p style="font-size: 2rem;" class="m-4">Which is looking pretty grim right now &#128556;</p>
-            <a href="{% url 'products' %}" class="btn btn-outline-black m-3">
-                <span class="icon">
-                    <i class="fa-sharp fa-solid fa-circle-arrow-left"></i>
-                </span>
-                <span>Keep Shopping</span>
-            </a>
+            <p style="font-size: 2rem;" class="mb-5">Which is looking pretty grim right now &#128556;</p>
+                <a href="{% url 'products' %}" class="button-74">
+                    <span class="icon">
+                        <i class="fas fa-chevron-left"></i>
+                    </span>
+                    <span> Keep Shopping</span>
+                </a>
             {% endif %}
         </div>
     </div>
@@ -82,6 +82,7 @@
 {% endblock %}
 
 {% block postloadjs %}
+{{ block.super }}
 <script type="text/javascript">
     $('.remove-item').click(function (e) {
         var csrfToken = "{{ csrf_token }}";

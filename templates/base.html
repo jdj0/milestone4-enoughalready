@@ -59,8 +59,25 @@
   </nav>
   <div class="text-center delivery-banner text-uppercase p-1">Free UK Delivery on all orders</div>
   <div class="base-background">
-    {% block content %}
-    {% endblock %}
+    <div class="message-container">
+      {% for message in messages %}
+        {% with message.level as level %}
+          {% if level == 40 %}
+            {% include 'includes/toasts/toast_error.html' %}
+          {% elif level == 30 %}
+            {% include 'includes/toasts/toast_warning.html' %}
+          {% elif level == 25 %}
+            {% include 'includes/toasts/toast_success.html' %}
+          {% else %}
+            {% include 'includes/toasts/toast_info.html' %}
+          {% endif %}
+        {% endwith %}
+      {% endfor %}
+
+      {% block content %}
+      {% endblock %}
+      
+    </div>
   </div>
 
   <!--Footer-->
@@ -84,6 +101,12 @@
   </footer>
 
   {% block postloadjs %}
+  <script>
+    var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+    var toastList = toastElList.map(function (toastEl) {
+      return new bootstrap.Toast(toastEl).show()
+    })
+  </script>
   {% endblock %}
 
 </body>
