@@ -30,7 +30,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-CSRF_TRUSTED_ORIGINS = ['http://*', 'https://*', 'https://8000-jdj0-milestone4enough-ltjslehs2u5.ws-eu83.gitpod.io']
+CSRF_TRUSTED_ORIGINS = ['http://*', 'https://*', 'https://8000-jdj0-milestone4enough-ltjslehs2u5.ws-eu84.gitpod.io']
 
 # Application definition
 
@@ -184,3 +184,8 @@ ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
+
+# Stripe
+STRIPE_CURRENCY = 'gbp'
+STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', '')
+STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', '')
