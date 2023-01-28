@@ -13,13 +13,17 @@
             <hr>
             <p>You have helped the planet and supported a small business at the same time. We think you're amazing &#129321;</p>
             <hr>
-            <p>Your order confirmation has been sent to {{ order.email }}</p>
+            <p>Confirmation of order: {{ order.order_number }} has been sent to {{ order.email }}</p>
         </div>
     </div>
     <hr>
 
     <div class="row">
-        <div class="col-12 col-lg-7"></div>
+        <div class="col-12 col-lg-7">
+            <div class="order-confirmation p-3">
+
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}
