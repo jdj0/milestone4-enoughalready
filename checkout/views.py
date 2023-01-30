@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
+from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
 
@@ -7,7 +8,25 @@ from .models import OrderLineItem, Order
 from products.models import Item
 from bag.contexts import bag_contents
 
+import json
 import stripe
+
+
+@require_POST
+def cache_checkout_data(request):
+    try:
+        pid = request.POST.get('client_secret').split('_secret')[0]
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        stripe.PaymentIntent.modify(pid, metadata={
+            'bag': json.dumps(request.session.get('bag', {})),
+            'save_info': request.POST.get('save_info'),
+            'username': request.user,
+        })
+        return HttpResponse(status=200)
+    except Exception as e:
+        messages.error(request, 'Sorry, there has been an error \
+            with your payment. Please try again later.')
+        return HttpResponse(content=e, status=400)
 
 
 def checkout(request):
@@ -33,7 +52,7 @@ def checkout(request):
             order = order_form.save(commit=False)
             pid = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_pid = pid
-            
+            order.original_bag = json.dumps(bag)
             order.save()
             for item_id, quantity in bag.items():
                 try:
@@ -82,7 +101,7 @@ def checkout(request):
     context = {
         'order_form': order_form,
         'stripe_public_key': stripe_public_key,
-        'client_secret': intent.client_secret, 
+        'client_secret': intent.client_secret,
     }
 
     return render(request, template, context)
@@ -94,7 +113,7 @@ def checkout_success(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
     messages.success(request, f'Order Successful! \
         Your order number is {order_number}. \
-        Your order conformation will be sent to {order.email}')
+        Your order confirmation will be sent to {order.email}')
     if 'bag' in request.session:
         del request.session['bag']
 
