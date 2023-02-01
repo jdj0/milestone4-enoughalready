@@ -30,7 +30,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-CSRF_TRUSTED_ORIGINS = ['http://*', 'https://*', 'https://8000-jdj0-milestone4enough-ltjslehs2u5.ws-eu84.gitpod.io']
+CSRF_TRUSTED_ORIGINS = ['http://*', 'https://*', 'https://8000-jdj0-milestone4enough-adht64o30zb.ws-eu84.gitpod.io']
 
 # Application definition
 
@@ -41,11 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.sites',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-
+    # project apps
     'home',
     'products',
     'bag',
@@ -54,6 +50,11 @@ INSTALLED_APPS = [
 
     "crispy_forms",
     "crispy_bootstrap5",
+    # allauth
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 ]
 
 MIDDLEWARE = [
@@ -77,13 +78,14 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             os.path.join(BASE_DIR, 'templates'),
+            os.path.join(BASE_DIR, 'templates', 'allauth'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',  # allauth
+                'django.template.context_processors.request', # allauth
+                'django.contrib.auth.context_processors.auth',  
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
                 'bag.contexts.bag_contents',
