@@ -9,8 +9,20 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <h1 class="m-4">Account<h1>
+            <h1 class="">Account<h1>
         </div>
     </div>
-    {{ account }}
+    <div class="row">
+        <div class="col-12 col-lg-6">
+            <p>Default Delivery Info:</p>
+            <form action="{% url 'account' %}" method="POST" id="account-update-form">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button class="button-74">Update Delivery Info </button>
+            </form>
+        </div>
+        <div class="col-12 col-lg-6">
+            <p>Order History:</p>
+        </div>
+    </div>
 {% endblock %}

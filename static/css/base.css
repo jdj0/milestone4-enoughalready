@@ -154,6 +154,10 @@ footer, a{
     height: 2px;
 }
 
+#account-update-form input::placeholder {
+    color: grey;
+}
+
 /* CSS Scan Button */
 
 .button-74 {
