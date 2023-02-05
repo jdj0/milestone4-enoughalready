@@ -158,6 +158,23 @@ footer, a{
     color: grey;
 }
 
+.account-order-history {
+    max-height: 425px;
+    overflow-y: auto;
+    border-radius: 15px;
+}
+
+.order-history-th {
+    text-decoration: none;
+    font-weight:normal;
+    font-size: small;
+}
+
+.order-history-table {
+    border-radius: 15px;
+    background-color: white;
+}
+
 /* CSS Scan Button */
 
 .button-74 {

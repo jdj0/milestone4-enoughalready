@@ -3,6 +3,7 @@ from django.contrib import messages
 
 from .models import UserAccount
 from .forms import UserAccountForm
+from checkout.models import Order
 
 
 def account(request):

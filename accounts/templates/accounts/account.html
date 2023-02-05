@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'accounts/css/accounts.css' %}">
+<link rel="stylesheet" href="{% static 'accounts/css/accounts.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -14,6 +14,37 @@
     </div>
     <div class="row">
         <div class="col-12 col-lg-6">
+            <p>Your Orders:</p>
+            <div class="account-order-history">
+                {% for order in orders %}
+                <table class="table table-borderless order-history-table mb-1">
+                    <tbody>
+                        <tr>
+                            <td colspan="2" class="order-history-th">Order:</th>
+                            <td colspan="6" class="order-history-th pb-0">{{ order.order_number }}</th>
+                        </tr>
+
+                        <tr>
+                            <td class="order-history-th pt-0" colspan="2">Date:</th>
+                            <td class="order-history-th pt-0" colspan="2">{{ order.date }}</th>
+                            <td class="order-history-th pt-0" colspan="2">Total:</th>
+                            <td class="order-history-th pt-0" colspan="2">£{{ order.grand_total }}</th>
+                        </tr>
+                        {% for x in order.lineitems.all %}
+                        <tr>
+                            <td class="col-2 mb-1" colspan="2">
+                                <img class="w-100 ps-3" src="{{ x.item.image.url }}" alt="{{ item.title }}">
+                            </td>
+                            <td colspan="6" class="text-center align-middle">{{ x.item.title }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-6">
             <p>Default Delivery Info:</p>
             <form action="{% url 'account' %}" method="POST" id="account-update-form">
                 {% csrf_token %}
@@ -21,8 +52,6 @@
                 <button class="button-74">Update Delivery Info </button>
             </form>
         </div>
-        <div class="col-12 col-lg-6">
-            <p>Order History:</p>
-        </div>
+
     </div>
-{% endblock %}
+    {% endblock %}
