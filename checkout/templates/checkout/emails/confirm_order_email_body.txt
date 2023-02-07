@@ -1,0 +1,23 @@
+Hi {{ order.full_name }},
+
+First of all, thank you. Your support means the world to us.
+
+We will be packing your order and posting it off as soon as possible.
+
+Here is a summary of your order:
+
+Order Date: {{ order.date }}
+Order Number: {{ order.order_number }}
+Order Total: {{ order.grand_total }}
+
+You order will be shipped to:
+{{ order.street_address1 }}
+{{ order.town_or_city }}
+{{ order.country }}
+
+If you have any questions, feel free to reply to this email.
+
+Thanks again for your support! 
+
+Sincerely,
+Enough Already
