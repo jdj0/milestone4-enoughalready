@@ -6,10 +6,35 @@ body{
     background-color: #efddd4 !important;
 }
 
+h1 {
+    font-family: 'Palanquin', sans-serif;
+    font-weight: 300;
+}
+
+h2 {
+    font-family: 'Palanquin', sans-serif;
+    font-weight: 400 !important;
+    font-size: large !important;
+}
+
+p {
+    font-family: 'Roboto', sans-serif;
+}
+
 .delivery-banner{
     background-color: #dfcec5;
     color: white;
 }
+
+.nav-item {
+    color: #2d0e19 !important;
+}
+
+.nav-link{
+    color: #2d0e19 !important;
+}
+
+
 
 .background {
     background: url('/static/media/thread.jpg') no-repeat center center fixed;
@@ -108,8 +133,13 @@ footer {
     margin-top: 25px !important;
 }
 
-footer, a{
+footer
+a {
     text-decoration: none !important;
+    color: #9a115f !important;
+}
+
+footer {
     color: #9a115f !important;
 }
 
@@ -131,19 +161,9 @@ footer, a{
     cursor: pointer;
 }
 
-/* Bootstrap toasts */
-
-/*
-.message-container {
-    position: fixed;
-    top: 72px;
-    right: 15px;
-    z-index: 999999;
-}
-*/
-
 .message-container {
     z-index: 999999;
+    min-height: 90vh;
 }
 
 .custom-toast {

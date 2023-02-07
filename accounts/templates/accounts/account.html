@@ -13,7 +13,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-12 col-lg-6">
+        <div class="col-12 col-lg-6 mb-3">
             <p>Your Orders:</p>
             <div class="account-order-history">
                 {% for order in orders %}
@@ -44,14 +44,17 @@
             </div>
         </div>
 
-        <div class="col-12 col-lg-6">
+        <div class="col-12 col-lg-6 mb-4">
             <p>Default Delivery Info:</p>
             <form action="{% url 'account' %}" method="POST" id="account-update-form">
                 {% csrf_token %}
                 {{ form|crispy }}
-                <button class="button-74">Update Delivery Info </button>
+                <div class="text-center">
+                    <button class="button-74">Update Delivery Info </button>
+                </div>
             </form>
         </div>
 
     </div>
-    {% endblock %}
+</div>
+{% endblock %}
