@@ -17,10 +17,8 @@
                 <div class="mb-5 mt-md-5">
                     <h2 class="mb-0 text-center">{{ item.title }}</h2>
                     <p class="lead m-2 text-left font-weight-bold text-center"><strong>£{{ item.price }}</strong></p>
-                    <p class="small mt-0 mb-0 text-center">
-                        <a class="text-secondary" href="{% url 'products' %}?category={{ item.category }}">
-                            {{ item.get_category_display }}
-                        </a>
+                    <p class="small mt-0 mb-0 text-center text-secondary">
+                        {{ item.get_category_display }}
                     </p>
                     <p class="m-3">{{ item.description }}</p>
                     <p class="mb-0 mt-1"><strong>Size: </strong>{{ item.size }}</p>

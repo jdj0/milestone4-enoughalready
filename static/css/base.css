@@ -41,6 +41,7 @@ p {
     background-size: cover;
     position: relative;
     height: 75vh;
+    border-bottom: 15px solid #dfcec5;
 }
 
 .products-background {
@@ -102,7 +103,7 @@ p {
 
 .aboutus {
     border: 5px;
-    border: 15px solid #dfcec5;
+    border-top: 15px solid #dfcec5;
     background-color: #efddd4;
 }
 
@@ -119,6 +120,21 @@ p {
     margin-top: 50px;
     border-radius: 50%;
     border: #d3adc5 solid 10px;
+}
+
+.whatis-img {
+    height: 300px;
+    width: 300px;
+    display: block;
+    margin: auto;
+    margin-top: 50px;
+    border-radius: 50%;
+    border: #d3adc5 solid 10px;
+}
+
+.what-right {
+    font-size:x-large;
+    font-weight: 300 !important;
 }
 
 .about-left,
