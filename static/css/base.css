@@ -34,8 +34,6 @@ p {
     color: #2d0e19 !important;
 }
 
-
-
 .background {
     background: url('/static/media/thread.jpg') no-repeat center center fixed;
     background-size: cover;
@@ -209,6 +207,14 @@ footer {
 .order-history-table {
     border-radius: 15px;
     background-color: white;
+}
+
+
+/* Alter Boostrap toast */
+.toast {
+    width: 100% !important;
+    text-align: center !important;
+    position: absolute;
 }
 
 /* CSS Scan Button */
