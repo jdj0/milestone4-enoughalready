@@ -24,14 +24,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config("SECRET_KEY")
+SECRET_KEY = os.environ.get('SECRET_KEY', '')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = 'DEVELOPMENT' in os.environ
 
 ALLOWED_HOSTS = ['enough-already.herokuapp.com', 'localhost']
 
-CSRF_TRUSTED_ORIGINS = ['http://*', 'https://*', 'https://8000-jdj0-milestone4enough-adht64o30zb.ws-eu86.gitpod.io', 'https://enough-already.herokuapp.com']
+CSRF_TRUSTED_ORIGINS = ['https://8000-jdj0-milestone4enough-adht64o30zb.ws-eu86.gitpod.io', 'https://enough-already.herokuapp.com']
 
 # Application definition
 
@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'bag',
     'checkout',
     'accounts',
-
+    # crispy forms
     "crispy_forms",
     "crispy_bootstrap5",
     # allauth
