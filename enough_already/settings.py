@@ -161,8 +161,15 @@ STATICFILES_DIRS = (
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / "media"
-    # Bucket settings
+
 if 'USE_AWS' in os.environ:
+    # Cache storage for better performance
+    AWS_S3_OBJECT_PARAMETERS = {
+        'Expires': 'Sat, 1 Jan 2050 21:00:00 GMT',
+        'CacheControl': 'max-age=94608000',
+    }
+
+    # Bucket settings
     AWS_STORAGE_BUCKET_NAME = 'jdj0-enoughalready'
     AWS_S3_REGION_NAME = 'eu-west-2'
     AWS_ACCESS_KEYID = os.environ.get('AWS_ACCESS_KEY_ID')
@@ -178,9 +185,6 @@ if 'USE_AWS' in os.environ:
     # Override static files when in production
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
-
-
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
