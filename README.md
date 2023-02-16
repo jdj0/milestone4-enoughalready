@@ -1,6 +1,6 @@
 <h1 align="center">Enough Already</h1>
 
-![Mock ups](confessify/static/images/rm-imgs/mock-up.png)
+![Mock ups](static/media/mocks.png)
 
 Enough Already is a full stack ecommerce web application that follows real world business logic, aiming to fulfil the needs of users and customers with various aims.
 
@@ -171,7 +171,6 @@ A test driven development process was used during this project, evidenced in the
 
 ## Code Tests
 - CSS used in this application was passed through the Jigsaw CSS Validator and passed with no errors.
-
     <img style="border:0;width:88px;height:31px"
         src="http://jigsaw.w3.org/css-validator/images/vcss-blue"
         alt="Valid CSS!">
@@ -180,4 +179,5 @@ A test driven development process was used during this project, evidenced in the
 - HTML was passed through the official W3C validator with no issues.<br>
 <img src="static/media/html-val.png" width="400px">
 
-     
+- Python was found to be PEP8 compliant, checked through the CI Python Linter.<br>
+<img src="static/media/py-lint.png" width="200px">
