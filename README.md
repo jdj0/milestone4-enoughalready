@@ -232,3 +232,114 @@ In the user’s account, the user can fill out the form to set their default del
 
 # Deployment
 To deploy this web application, an account is necessary with [ElephantSQL](https://www.elephantsql.com/), [Amazon Web Services](https://aws.amazon.com/) and [Heroku](https://www.heroku.com). 
+
+ElephantSQL
+1. From the Elephant SQL dashboard, click ‘Create New Instance’.
+2. Input name as ‘enough-already’, select plan, select closest region for a data centre, click review then create instance.
+3. From the dashboard, click the database instance just created.
+4. The URL provided will be used in the config vars of the Heroku app.
+
+Heroku
+1. From the Heroku dashboard, click ‘New’.
+2. Name the app and select the closest region then click ‘create app’.
+3. Next, in the settings tab, real config vars and input a key as ‘DATABASE_URL’ and value as the ElephantSQL URL that was created in the previous steps . Click ‘Add’.
+
+Gitpod
+1. Now in the Gitpod workspace, run the following commands in the CLI to install the packages needed for deployment:
+2. pip3 install dj_database_url==0.5.0 psycopg2
+3. pip3 install gunicon
+4. pip3 install boto3
+5. pip3 install django-storages
+6. pip3 freeze > requirements.txt
+7. Create a Procfile and input: ‘web: gunicorn enough_already.wsgi:application’
+
+ElephantSQL
+1. From the dashboard, the database must now be confirmed. To do this, click ‘Browser’ from the left navigation bar.
+2. Click the table query button and select ‘auth_user (public)’ from the dropdown menu. Click ‘Execute’. 
+3. Super User details should now be displayed. This also confirms your database is now ready to hold data.
+
+Gitpod
+1. Back to Gitpod. Login to heroku through the CLI by running: ‘heroku login’.
+2. Next, run ‘heroku config:set DISABLE_COLLECTSTATIC=1’ in the CLI to stop it running static files during deployment.
+3. Add the heroku URL to ALLOWED_HOSTS and CSRF_TRUSTED_ORIGINS in the project level settings.
+
+Heroku
+1. Once again, in the config vars in the settings tab, add a generated Django Secret Key. Enter the key as ‘SECRET_KEY’ and the value as the generated Django key that can be made from any Django key generator.
+
+With all of these steps followed, and all code pushed to Github (with automatic deployment set up in Heroku), the site should be deployed, however, static files must still be set up. This is done through Amazon Web Services - S3.
+
+AWS
+1. From the Management Console, search services for S3 and when found, click, ‘Create Bucket’.
+2. Name the bucket ‘enough-already’ and select the closest region. Uncheck ‘Block all public access’ and check the box to agree to the bucket being public. Click ‘Create Bucket’.
+3. Click on the bucket that was just created. Go to properties and turn on static website hosting, entering index.html and error.html in the corresponding inputs. 
+4. In the permission section, paste the below snippet to the CORS configuration then click save:
+
+<img src="static/media/rm-10.png" width="200px">
+
+5. Next, navigate to bucket policy and click policy generator. Select the following settings: 
+    - Select type of Policy: S3 Bucket Policy
+    - In the ‘Principal’ input, input ‘*’.  
+    - Under the actions dropdown, select ‘Get Object’
+    - Copy the ARN (located in the bucket settings page in the bucket policy section) and paste it into the ARN input on the form.
+    - Click ‘Add statement’ then ‘Generate Policy’.
+    - Add ‘/*’ to the end of the Resource value (the ARN).
+6. Copy and paste the JSON policy to the bucket policy setting. Click Save.
+7. Navigate to the Access Control List, click edit and check the box enabling ‘Everyone (public access).
+8. Navigate back to services and search ‘IAM’.
+9. Click ‘User Groups’ from the sidebar.
+10. Set group name as ‘manage-enough-already’.
+11. Import managed policies then import ‘Amazon S3 Full Access’.
+12. Now, using the ARN from the S3 bucket (found in bucket policy), paste it into ‘Resource’ value.
+13. Review the policy by naming and providing a brief description then click create policy.
+14. Now this policy must be attached to the group we already created. Click ‘User Groups’, select the group we made earlier, navigate to the permissions tab > add permissions > attach policies and attach the policy we just created and click ‘Add Permissions’.
+15. Add user, entering ‘enough-already-staticfiles-user’ and give programmatic access. Click next and add our user to our group. Click through to create user.
+16. Download .csv file.
+
+Gitpod
+1. Add ‘storages’ to the settings file in installed apps.
+2. Paste the following snippet into settings:
+
+<img src="static/media/rm-11.png" width="400px">
+
+Heroku
+1. Add the AWS keys and values referred to in the previous code snippet. These will all be found in the S3 Bucket and the .csv file downloaded earlier. Also, add another config var, that is simply USE_AWS and True.
+2. Add Stripe Publishable and Secret keys to config vars (Remember to changed the endpoint URL in stripe for webhooks)
+3. Remove the ‘Disable Collect Static’ variable from the config vars.
+
+Gitpod
+1. Add the following code snippet to a new file called ‘custom_storages.py’. 
+
+<img src="static/media/rm-12.png" width="400px">
+
+2. Push code to Github to redeploy the site with static files.
+
+The site is now deployed!
+
+# Forking the GitHub Repository 
+To create a copy of the project to experiment with changes in a safe way that will not affect the original site:
+
+1. Log into GitHub. Go to the GitHub Repository.
+2. Near the top of the Repository, click the “Fork” button in order to create a copy of the repository.
+
+# Making a Local Clone
+To create a copy of the project to experiment with changes in a safe way that will not affect the original site:
+1. Log into GitHub go to the GitHub Repository.
+2. Click ‘Code’.
+3. To clone the repository using HTTPS, under "Clone with HTTPS", click the clipboard icon to copy the link.
+4. Open Git Bash.
+5. Change the current working directory to the location you want the cloned directory.
+6. Type ‘git clone’, add a space, then paste the URL that was copied earlier (step 3) and press enter. This should have created a clone.
+
+# References
+Code Institute<br>
+- Code and project informed by Code Institute tutorials and tutelage
+
+Get CSS Scan<br>
+- Button-74 from [here](https://getcssscan.com/css-buttons-examples)
+
+Unsplash<br>
+- Home page images from [Unsplash](https://unsplash.com/)
+
+# Acknowledgments
+- Many thanks to my Mentor, Spencer Barriball, for his guidance and invaluable feedback on the project.
+- Tutor Support, for their constant support and patience throughout the development process.
