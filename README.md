@@ -25,10 +25,10 @@ View live site [here](https://enough-already.herokuapp.com/).
 - First Time Visitor
     - I want to understand what the business is and their core values.
     - I want to see the products that the business offers.
-    - I may want to create an account with the business if I am interested in the brand.
+    - I want to be able to view individual product details to inform a purchase decision.
 
 - Returning Visitor
-    - I want to be able to view individual product details to inform a purchase decision.
+    - I may want to create an account with the business if I am interested in the brand.
     - I want to be able to purchase items by adding them to a shopping bag, then processing through a checkout.
 
 - Frequent User
@@ -170,7 +170,7 @@ A test driven development process was used during this project, evidenced in the
 <br>
 
 ## Code Tests
-- CSS used in this application was passed through the Jigsaw CSS Validator and passed with no errors.
+- CSS used in this application was passed through the Jigsaw CSS Validator and passed with no errors.<br>
     <img style="border:0;width:88px;height:31px"
         src="http://jigsaw.w3.org/css-validator/images/vcss-blue"
         alt="Valid CSS!">
@@ -181,3 +181,54 @@ A test driven development process was used during this project, evidenced in the
 
 - Python was found to be PEP8 compliant, checked through the CI Python Linter.<br>
 <img src="static/media/py-lint.png" width="200px">
+
+## Testing User Stories
+### As a first time user...
+- I want to understand what the business is and their core values.
+
+The Landing page greets the user with the name of the brand. As the user continues to scroll, they are shown two simple bits of information — ‘What is Enough Already?’ and ‘Who is Enough Already?’. These simple sections introduce a first time user to the brand.
+
+- I want to see the products that the business offers.
+
+The navbar clearly indicates a products section. Upon the user navigating to this page, they are presented with all the products that the business has to offer. Each product is presented in its own card, displaying title, category, size and price.
+
+- I want to be able to view individual product details to inform a purchase decision.
+
+Once a product card is clicked, the user is taken to the details of the product, where a more in depth description of the product is displayed and the product image is made bigger and easier to view. 
+
+<img src="static/media/rm-1.png" width="200px">
+<img src="static/media/rm-2.png" width="200px">
+<img src="static/media/rm-3.png" width="200px">
+
+<br>
+
+### As a returning user...
+- I may want to create an account with the business if I am interested in the brand.
+
+If the user is not logged in or does not yet have an account, the user is given the option of registering or logging into an account. After clicking register, the user is given a form to complete and if the input is valid, the user will be granted an account (email verification has been turned off for ease of use while marking).
+
+- I want to be able to purchase items by adding them to a shopping bag, then processing through a checkout.
+
+From the product detail page, items can be added to the bag. A message pops up to let the user know that the item has been successfully added to the bag. When viewing the shopping bag, the user can view all items in the bag and their price. Items can be deleted. The grand total can be viewed before progressing to the checkout. During the checkout, the user can complete their purchase by inputting shipping and payment information.
+
+<img src="static/media/rm-4.png" width="200px">
+<img src="static/media/rm-5.png" width="200px">
+<img src="static/media/rm-6.png" width="200px">
+<img src="static/media/rm-7.png" width="200px">
+<img src="static/media/rm-8.png" width="200px">
+
+### As a frequent user...
+- In my account, I want to be able to view my order history.
+
+In the user’s account, their order history is displayed with each order in its own card. A new card is generated with each new order.
+
+- I want to be able to store my delivery information to make the checkout process faster and easier. 
+
+In the user’s account, the user can fill out the form to set their default delivery info. This will then be stored with their account and the next time the user goes to the checkout page, their delivery info will be automatically filled out with their default address.
+
+<img src="static/media/rm-9.png" width="200px">
+<br>
+<br>
+
+# Deployment
+To deploy this web application, an account is necessary with [ElephantSQL](https://www.elephantsql.com/), [Amazon Web Services](https://aws.amazon.com/) and [Heroku](https://www.heroku.com). 
