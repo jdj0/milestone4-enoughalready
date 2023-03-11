@@ -55,9 +55,10 @@ INSTALLED_APPS = [
     'bag',
     'checkout',
     'accounts',
+    'blog',
     # crispy forms
-    "crispy_forms",
-    "crispy_bootstrap5",
+    'crispy_forms',
+    'crispy_bootstrap5',
     # allauth
     'django.contrib.sites',
     'allauth',
