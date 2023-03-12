@@ -1,3 +1,7 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+def blog(request):
+    """ A view that lists all blog posts """
+
+    return render(request, 'blog/blog.html')
