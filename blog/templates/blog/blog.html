@@ -27,8 +27,9 @@
                 </div>
             </div>
             <div class="col-md-2">
-                <div><button type="button" class="btn btn-success mt-3" style="width: 90%;">Edit</button></div>
-                <div><button type="button" class="btn btn-danger mt-3" style="width: 90%;">Delete</button></div>
+                <a href="{% url 'blog_update' pk=blog.id %}">
+                    <div><button type="button" class="btn btn-success mt-3" style="width: 90%;">Edit</button></div>
+                </a>
             </div>
             {% else %}
             <div class="col-md-8">
