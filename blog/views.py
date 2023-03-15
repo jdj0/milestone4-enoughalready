@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse_lazy
 from django.utils import timezone
+from django.views.generic.edit import DeleteView
 from django.contrib.admin.views.decorators import staff_member_required
 from .models import Blog
 from .forms import BlogUpdateForm
@@ -44,3 +46,8 @@ def blog_update(request, pk):
         'blog': blog
     }
     return render(request, 'blog/blog_update.html', context)
+
+
+class BlogDelete(DeleteView):
+    model = Blog
+    success_url = reverse_lazy('blog')
