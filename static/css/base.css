@@ -210,6 +210,14 @@ footer {
 }
 
 
+
+.blog-card-container {
+    width: 100%;
+    max-width: 800px;
+}
+
+
+
 /* Alter Boostrap toast */
 .toast {
     width: 100% !important;

@@ -27,6 +27,11 @@ def blog_post(request, pk):
     return render(request, 'blog/blog_post.html', context)
 
 
+def blog_create(request):
+    """ Comment """
+    return render(request, 'blog/blog_create.html')
+
+
 @staff_member_required
 def blog_update(request, pk):
     """ A view that allows staff to update blog posts """

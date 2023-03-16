@@ -8,9 +8,23 @@
         <h1 class="m-4">Blog</h1>
     </div>
 </div>
-{% for blog in blogs %}
+
+{% if user.is_superuser %}
 <div class="container d-flex justify-content-center">
-    <div class="card mb-3 mx-5" style="max-width: 800px;">
+    <a href="{% url 'blog_create' %}">
+        <div id="button1" class="d-flex justify-content-center">
+            <button type="button" class="btn btn-success" style="width: 100%">
+                New Blog <i class="fa-solid fa-square-plus"></i>
+            </button>
+        </div>
+    </a>
+</div>
+
+{% endif %}
+
+{% for blog in blogs %}
+<div class="container d-flex justify-content-center mt-3">
+    <div id="blog1" class="card mb-3 mx-5" style="max-width: 800px;">
         <div class="row g-0">
             <div class="col-md-4">
                 <img src="{{ blog.image.url }}" class="img-fluid rounded-start" alt="blog post">
@@ -47,5 +61,12 @@
     </div>
 </div>
 {% endfor %}
+
+<script>
+    var button1 = document.getElementById("button1");
+    var blog1 = document.getElementById("blog1");
+
+    button1.style.width = blog1.offsetWidth + "px";
+</script>
 
 {% endblock %}
