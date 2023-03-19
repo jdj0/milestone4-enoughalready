@@ -216,6 +216,10 @@ footer {
     max-width: 800px;
 }
 
+.btn-edit {
+    background-color: lightgray;
+}
+
 
 
 /* Alter Boostrap toast */
