@@ -11,7 +11,7 @@
 
 {% if user.is_superuser %}
 <div class="container d-flex justify-content-center">
-    <a href="{% url 'blog_create' %}">
+    <a style="text-decoration: none;" href="{% url 'blog_create' %}">
         <div id="button1" class="d-flex justify-content-center">
             <button type="button" class="btn btn-success" style="width: 100%">
                 New Blog <i class="fa-solid fa-square-plus"></i>
@@ -32,7 +32,7 @@
             {% if user.is_superuser %}
             <div class="col-md-6">
                 <div class="card-body">
-                    <a href="{% url 'blog_post' pk=blog.id %}">
+                    <a style="text-decoration: none; color: black;" href="{% url 'blog_post' pk=blog.id %}">
                         <h5 class="card-title">{{ blog.title }}</h5>
                     </a>
                     <p class="card-text">{{ blog.subtitle }}</p>

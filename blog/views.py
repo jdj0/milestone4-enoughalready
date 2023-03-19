@@ -3,8 +3,9 @@ from django.urls import reverse_lazy
 from django.utils import timezone
 from django.views.generic.edit import DeleteView
 from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib import messages
 from .models import Blog
-from .forms import BlogUpdateForm
+from .forms import BlogUpdateForm, BlogCreateForm
 
 
 def blog(request):
@@ -27,9 +28,27 @@ def blog_post(request, pk):
     return render(request, 'blog/blog_post.html', context)
 
 
+@staff_member_required
 def blog_create(request):
-    """ Comment """
-    return render(request, 'blog/blog_create.html')
+    """ A view that allows staff to create blogn posts  """
+
+    form = BlogCreateForm(request.POST or None)
+
+    if request.method == 'POST':
+        if form.is_valid():
+            blog = form.save(commit=False)
+            blog.author = request.user
+            blog.published = timezone.now()
+            if 'image' in request.FILES:
+                blog.image = request.FILES['image']
+            blog.save()
+            messages.success(request, 'Blog Published')
+            return redirect('blog')
+
+    context = {
+        'form': form,
+    }
+    return render(request, 'blog/blog_create.html', context)
 
 
 @staff_member_required

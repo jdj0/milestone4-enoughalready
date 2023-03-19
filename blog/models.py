@@ -1,5 +1,6 @@
 from django.db import models
 from accounts.models import UserAccount
+from django.contrib.auth.models import User
 
 
 class Blog(models.Model):
@@ -8,4 +9,7 @@ class Blog(models.Model):
     content = models.TextField()
     image = models.ImageField(null=True, blank=True, upload_to="images/")
     published = models.DateTimeField(auto_now_add=True)
-    author = models.ForeignKey(UserAccount, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
