@@ -62,6 +62,7 @@ def blog_update(request, pk):
             blog = form.save(commit=False)
             blog.published = timezone.now()
             blog.save()
+            messages.success(request, 'Blog Updated')
             return redirect('blog_post', pk=pk)
     else:
         form = BlogUpdateForm(instance=blog)
