@@ -50,6 +50,14 @@ p {
     margin-bottom: 25px !important;
 }
 
+.blog-background {
+    background: url('/static/media/thread.jpg') no-repeat center center fixed;
+    background-size: cover;
+    position: relative;
+    height: 15vh;
+    margin-bottom: 25px !important;
+}
+
 .pr-text {
     border: red;
     border-width: 5px;
