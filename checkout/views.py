@@ -33,6 +33,8 @@ def cache_checkout_data(request):
 
 
 def checkout(request):
+    """ Using bag items, customer info and stripe, creates an order """
+
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
 
@@ -74,7 +76,23 @@ def checkout(request):
                     order.delete()
                     return redirect(reverse('view_bag'))
 
+            # Decrease item quantities
+            for item_id, quantity in bag.items():
+                try:
+                    item = Item.objects.get(id=item_id)
+                    item.quantity -= quantity
+                    item.save()
+                except Item.DoesNotExist:
+                    messages.error(request, (
+                        "We couldn't find one of your items in our database. "
+                        "Please get in touch so we can help!")
+                    )
+                    order.delete()
+                    return redirect(reverse('view_bag'))
+
+            # Save customer info
             request.session['save_info'] = 'save-info' in request.POST
+            # Redirect to success page
             return redirect(reverse('checkout_success',
                                     args=[order.order_number]))
         else:
