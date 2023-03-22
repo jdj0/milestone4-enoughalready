@@ -51,7 +51,8 @@ p {
     font-family: 'Palanquin', sans-serif;
     font-weight: 300;
     color: red;
-    font-size: 48px;
+    font-size: 60px;
+    transform: rotate(-40deg);
 }
 
 .background {
