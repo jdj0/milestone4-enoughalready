@@ -17,6 +17,7 @@ import stripe
 
 @require_POST
 def cache_checkout_data(request):
+    """ Handles the caching of checkout data entered by user """
     try:
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY

@@ -36,7 +36,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['enough-already.herokuapp.com', 'localhost']
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://8000-jdj0-milestone4enough-gpbb20z326m.ws-eu90.gitpod.io',
+    'https://8000-jdj0-milestone4enough-gpbb20z326m.ws-eu92.gitpod.io',
     'https://enough-already.herokuapp.com'
     ]
 
@@ -233,7 +233,6 @@ STRIPE_CURRENCY = 'gbp'
 STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', '')
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', '')
 STRIPE_WH_SECRET = os.environ.get('STRIPE_WH_SECRET', '')
-DEFAULT_FROM_EMAIL = 'enoughalready@example.com'
 
 # Email settings
 if 'DEVELOPMENT' in os.environ:
