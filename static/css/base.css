@@ -75,7 +75,7 @@ p {
     background: url('/static/media/thread.jpg') no-repeat center center fixed;
     background-size: cover;
     position: relative;
-    height: 15vh;
+    height: 20vh;
     margin-bottom: 25px !important;
 }
 
