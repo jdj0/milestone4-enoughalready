@@ -75,7 +75,7 @@ p {
     background: url('/static/media/thread.jpg') no-repeat center center fixed;
     background-size: cover;
     position: relative;
-    height: 20vh;
+    height: 25vh;
     margin-bottom: 25px !important;
 }
 
@@ -103,11 +103,11 @@ p {
 
 .navbar-brand{
     font-weight: bold;
-    color: #dfcec5 !important;
+    color: #d3adc5 !important;
 }
 
 .navbar-brand:hover{
-    color: #d3adc5 !important;
+    color: #dfcec5 !important;
 }
 
 .ea-text {
