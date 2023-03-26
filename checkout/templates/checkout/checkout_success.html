@@ -2,17 +2,23 @@
 {% load static %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+<link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
 {% endblock %}
 
 {% block content %}
 <div class="container d-flex justify-content-center mt-3 mb-3">
-    <div class="card" style="max-width: 800px;">
-        <img src="{% static 'media/heart.png' %}" class="card-img-top" alt="thank you heart">
+    <div class="card bg-transparent border-0" style="max-width: 800px;">
+        <div class="text-center">
+            <img src="{% static 'media/heart.png' %}" style="max-width: 350px;" class="card-img-top img-fluid"
+                alt="thank you heart">
+        </div>
         <div class="card-body">
-            <h1>THANK YOU</h1>
+            <div class="text-center">
+                <h1>THANK YOU</h1>
+            </div>
             <p class="card-text">
-                You have helped the planet and supported a small business at the same time. We think you're amazing &#129321;
+                You have helped the planet and supported a small business at the same time. We think you're amazing
+                &#129321;
             </p>
             <p class="card-text">
                 Confirmation of order: {{ order.order_number }} has been sent to {{ order.email }}
