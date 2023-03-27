@@ -8,7 +8,7 @@ Here is a summary of your order:
 
 Order Date: {{ order.date }}
 Order Number: {{ order.order_number }}
-Order Total: {{ order.grand_total }}
+Order Total: £ {{ order.grand_total }}
 
 You order will be shipped to:
 {{ order.street_address1 }}
