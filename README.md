@@ -136,6 +136,19 @@ The UserAccount model, found in the accounts app, allows the user to create an a
     - default_county = a CharField that stores the account holder’s default county.
     - default_country =  a CharField that stores the account holder’s default country, by selecting the country from the dropdown menu.
 
+## Blog app models:
+The Blog model, found in the blog app, allows users with staff permissions to create, edit, read and delete blog posts. Users without staff permissions are able to read blogs.
+
+- UserAccount Model
+    - title = a CharField that stores the blog title up to a maximum of 99 characters.
+    - subtitle = a CharField that stores a subtitle, providing context to the title up to a maximum of 99 characters.
+    - content = a TextField that stores the main content of each blog post.
+    - image = an ImageField that is used to upload an image for each blog post.
+    - published = a DateTimeField that is automatically set to the current date and time when the blog post is created.
+    - author = a ForeignKey to the User model, which stores the user who creates the blog post – typically the admin account as the user must have staff access.
+
+![ERD Diagram](static/media/ea_erd.png)
+
 # Technologies
 
 ## Languages and Frameworks
