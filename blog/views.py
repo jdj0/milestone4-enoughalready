@@ -21,8 +21,21 @@ def blog_post(request, pk):
     """ A view that shows the requested blog post """
 
     blog = get_object_or_404(Blog, pk=pk)
+    comments = blog.comment_set.all()
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.blog = blog
+            comment.save()
+            messages.success(request, 'Comment posted')
+            return redirect('blog_post', pk=pk)
+    else:
+        form = CommentForm()
     context = {
         'blog': blog,
+        'comments': comments,
+        'form': form,
     }
 
     return render(request, 'blog/blog_post.html', context)
