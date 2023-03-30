@@ -11,7 +11,7 @@
             <p class="card-text">
                 {{ blog.content|linebreaks }}
             </p>
-            <small><p class="card-text">{{ blog.published }}</p></snall>
+            <small><p class="card-text">{{ blog.published }}</p></small>
         </div>
     </div>
     <h1>Comments</h1>
@@ -26,10 +26,10 @@
             <small><p class="card-text">{{ comment.published }}</p></small>
         </div>
     </div>
+    {% endfor %}
     {% else %}
     <h2>No comments. Sad.</h2>
     {% endif %}
-
 </div>
 
 {% endblock %}
