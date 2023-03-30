@@ -4,8 +4,8 @@ from django.utils import timezone
 from django.views.generic.edit import DeleteView
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib import messages
-from .models import Blog
-from .forms import BlogUpdateForm, BlogCreateForm
+from .models import Blog, Comment
+from .forms import BlogUpdateForm, BlogCreateForm, CommentForm
 
 
 def blog(request):
