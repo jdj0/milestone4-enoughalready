@@ -26,6 +26,8 @@ def blog_post(request, pk):
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
+            comment.author = request.user
+            comment.published = timezone.now()
             comment.blog = blog
             comment.save()
             messages.success(request, 'Comment posted')
