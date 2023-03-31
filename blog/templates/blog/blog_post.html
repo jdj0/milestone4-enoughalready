@@ -20,9 +20,9 @@
 <div class="container d-flex justify-content-center m-3">
     <h1 class="m-3">Comments</h1>
 </div>
+{% if comments %}
+{% for comment in comments %}
 <div class="container d-flex justify-content-center mt-3 mb-3">
-    {% if comments %}
-    {% for comment in comments %}
     <div class="card" style="max-width: 800px;">
         <div class="card-body">
             <p class="card-text">
@@ -36,12 +36,15 @@
             </small>
         </div>
     </div>
-    {% endfor %}
-    {% else %}
+</div>
+{% endfor %}
+{% else %}
+<div class="container d-flex justify-content-center mt-3 mb-3">
     <div>
         <h2 class="m-3">No comments. Sad.</h2>
     </div>
-    {% endif %}
 </div>
+{% endif %}
+
 
 {% endblock %}
