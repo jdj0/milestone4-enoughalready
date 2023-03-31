@@ -17,7 +17,9 @@
         </div>
     </div>
 </div>
-<h1>Comments</h1>
+<div class="container d-flex justify-content-center m-3">
+    <h1 class="m-3">Comments</h1>
+</div>
 <div class="container d-flex justify-content-center mt-3 mb-3">
     {% if comments %}
     {% for comment in comments %}
@@ -37,7 +39,7 @@
     {% endfor %}
     {% else %}
     <div>
-        <h2>No comments. Sad.</h2>
+        <h2 class="m-3">No comments. Sad.</h2>
     </div>
     {% endif %}
 </div>
