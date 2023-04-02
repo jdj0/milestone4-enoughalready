@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container justify-content-center mt-3 mb-3" style="width: 100%;">
+    <div class="card p-3">
+        <h1>Edit Comment</h1>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.content|as_crispy_field }}
+            <button type="submit" class="btn btn-success mt-4" style="width: 100%;">Update</button>
+        </form>
+        <button id="delete-btn" type="button" class="btn btn-danger mt-4">Delete</button>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">DELETE COMMENT</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to Delete this comment? This cannot be undone.</p>
+            </div>
+            <div class="modal-footer">
+                <form action="{% url 'blog_delete' pk=blog.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var deleteBtn = document.getElementById('delete-btn');
+    var deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
+    deleteBtn.onclick = function() {
+        deleteModal.show();
+    }
+</script>
+
+{% endblock %}

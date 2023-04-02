@@ -18,7 +18,7 @@ def blog(request):
 
 
 def blog_post(request, pk):
-    """ A view that shows the requested blog post """
+    """ A view that shows the requested blog post and allows comments """
 
     blog = get_object_or_404(Blog, pk=pk)
     comments = blog.comment_set.all()

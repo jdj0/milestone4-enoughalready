@@ -18,3 +18,9 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ('content',)
+
+
+class CommentUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('content',)
