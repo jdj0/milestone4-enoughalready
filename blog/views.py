@@ -98,7 +98,7 @@ def comment_update(request, pk):
 
     comment = get_object_or_404(Comment, pk=pk)
     if request.method == 'POST':
-        form = CommentUpdateForm(request.POST, instance=comment)
+        form = CommentUpdateForm(request.POST, request.FILES, instance=comment)
         if form.is_valid():
             comment = form.save(commit=False)
             comment.published = timezone.now()
