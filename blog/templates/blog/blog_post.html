@@ -22,7 +22,6 @@
 </div>
 
 {% if user.is_authenticated %}
-
 <div class="container justify-content-center mt-3 mb-3" style="width: 100%;">
     <div class="card p-3">
         <form method="POST" enctype="multipart/form-data">
@@ -32,9 +31,10 @@
         </form>
     </div>
 </div>
-
 {% else %}
-<h2>You must be logged in to leave comments</h2>
+<div class="container justify-content-center" style="width: 100%;">
+    <h2>(You must be logged in to leave comments)</h2>
+</div>
 {% endif %}
 
 {% if comments %}
