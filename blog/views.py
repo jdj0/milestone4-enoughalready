@@ -91,3 +91,26 @@ def blog_update(request, pk):
 class BlogDelete(DeleteView):
     model = Blog
     success_url = reverse_lazy('blog')
+
+
+def comment_update(request, pk):
+    """ A view that allows users to update their comments """
+
+    comment = get_object_or_404(Comment, pk=pk)
+    if request.method == 'POST':
+        form = CommentUpdateForm(request.POST, instance=comment)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.published = timezone.now()
+            comment.save()
+            messages.success(request, 'Comment Updated')
+            return redirect('blog_post', pk=comment.blog.pk)
+    else:
+        form = CommentForm(instance=comment)
+
+    context = {
+        'form': form,
+        'comment': comment
+    }
+
+    return render(request, 'blog/comment_update.html', context)
