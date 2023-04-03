@@ -55,7 +55,7 @@
     </div>
     {% if user == comment.author %}
     <div class="position-absolute top-0 end-0">
-        <a href="{% url 'update_comment' comment.pk %}" class="btn btn-sm btn-secondary">
+        <a href="{% url 'update_comment' pk=comment.id %}" class="btn btn-sm btn-secondary">
             <i class="fa-light fa-pen-to-square"></i>
         </a>
     </div>
