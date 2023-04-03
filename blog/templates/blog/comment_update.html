@@ -27,7 +27,7 @@
                 <p>Are you sure you want to Delete this comment? This cannot be undone.</p>
             </div>
             <div class="modal-footer">
-                <form action="{% url 'blog_delete' pk=blog.id %}" method="post">
+                <form action="{% url 'comment_delete' pk=comment.id %}" method="post">
                     {% csrf_token %}
                     <button type="submit" class="btn btn-danger">Delete</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>

@@ -35,7 +35,7 @@ DEBUG = 'DEVELOPMENT' in os.environ
 ALLOWED_HOSTS = ['enough-already.herokuapp.com', 'localhost']
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://8000-jdj0-milestone4enough-gpbb20z326m.ws-eu92.gitpod.io',
+    'https://8000-jdj0-milestone4enough-gpbb20z326m.ws-eu93.gitpod.io',
     'https://enough-already.herokuapp.com'
     ]
 

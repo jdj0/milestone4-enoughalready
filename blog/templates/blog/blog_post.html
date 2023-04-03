@@ -38,36 +38,37 @@
 {% endif %}
 
 {% if comments %}
-{% for comment in comments %}
-<div class="container d-flex justify-content-center mt-3 mb-3">
-    <div class="card" style="max-width: 800px;">
+  {% for comment in comments %}
+    <div class="container d-flex justify-content-center mt-3 mb-3">
+      <div class="card" style="max-width: 800px;">
         <div class="card-body">
-            <p class="card-text">
-                {{ comment.content }}
-            </p>
-            <small>
-                <p class="card-text">{{ comment.author }}</p>
-            </small>
-            <small>
-                <p class="card-text">{{ comment.published }}</p>
-            </small>
+          <p class="card-text">
+            {{ comment.content }}
+          </p>
+          <small>
+            <p class="card-text">{{ comment.author }}</p>
+          </small>
+          <small>
+            <p class="card-text">{{ comment.published }}</p>
+          </small>
         </div>
-    </div>
-    {% if user == comment.author %}
-    <div class="position-absolute top-0 end-0">
-        <a href="{% url 'update_comment' pk=comment.id %}" class="btn btn-sm btn-secondary">
-            <i class="fa-light fa-pen-to-square"></i>
+      
+      {% if user == comment.author %}
+      <div class="position-absolute top-0 end-0 p-1">
+        <a href="{% url 'comment_update' pk=comment.id %}">
+          <i class="fa-regular fa-pen-to-square" style="color: black;"></i>
         </a>
+      </div>
+      {% endif %}
     </div>
-    {% endif %}
-</div>
-{% endfor %}
+    </div>
+  {% endfor %}
 {% else %}
-<div class="container d-flex justify-content-center mt-3 mb-3">
+  <div class="container d-flex justify-content-center mt-3 mb-3">
     <div>
-        <h2 class="m-3">No comments. Sad.</h2>
+      <h2 class="m-3">No comments. Sad.</h2>
     </div>
-</div>
+  </div>
 {% endif %}
 
 {% endblock %}
