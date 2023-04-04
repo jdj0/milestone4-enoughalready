@@ -13,10 +13,16 @@ View live site [here](https://enough-already.herokuapp.com/).
 - Payments through STRIPE integration
 - SQL Database (PostgreSQL)
 - Demonstrates full CRUD functionality
-    - Create orders
-    - Read product details
-    - Update delivery details in user account
-    - Delete products from shopping bag
+    - Ecommerce:
+        - Create orders
+        - Read product details
+        - Update delivery details in user account
+        - Delete products from shopping bag
+    - Blog:
+        - Create blogs and comments
+        - Read blogs and comments
+        - Update blogs and comments
+        - Delete blogs and comments
 
 
 # UX
@@ -34,7 +40,8 @@ View live site [here](https://enough-already.herokuapp.com/).
 - Frequent User
     - I want to create an account to enhance my shopping experience.
     - In my account I want to be able to view my order history.
-    - I want to be able to store my delivery information to make the checkout process faster and easier. 
+    - I want to be able to store my delivery information to make the checkout process faster and easier.
+    - I want to interact with the brand by reading blogs and leaving comments.
 
 ## Frontend Design
 - Design Choices
@@ -66,6 +73,8 @@ The following wireframes were used to guide the frontend development of the e-co
 ![wireframe](static/media/checkout.png)
     - Account
 ![wireframe](static/media/account.png)
+    - Blog
+![wireframe](static/media/blog.png)
 
 
 ## Mobile
@@ -81,6 +90,8 @@ The following wireframes were used to guide the frontend development of the e-co
 <img src="static/media/mobile-checkout.png" width="300px">
 - Account<br>
 <img src="static/media/mobile-account.png" width="300px">
+- Blog<br>
+<img src="static/media/blog-mob.png" width="300px">
 
 # Backend Design
 ## Products app models:
@@ -137,9 +148,10 @@ The UserAccount model, found in the accounts app, allows the user to create an a
     - default_country =  a CharField that stores the account holder’s default country, by selecting the country from the dropdown menu.
 
 ## Blog app models:
-The Blog model, found in the blog app, allows users with staff permissions to create, edit, read and delete blog posts. Users without staff permissions are able to read blogs.
+The Blog model, found in the blog app, allows users with staff permissions to create, edit, read and delete blog posts. Authenticated users are able to create, read, edit and delete comments of their own.
+Unauthenticated users are able to read blogs.
 
-- UserAccount Model
+- Blog Model
     - title = a CharField that stores the blog title up to a maximum of 99 characters.
     - subtitle = a CharField that stores a subtitle, providing context to the title up to a maximum of 99 characters.
     - content = a TextField that stores the main content of each blog post.
@@ -147,7 +159,13 @@ The Blog model, found in the blog app, allows users with staff permissions to cr
     - published = a DateTimeField that is automatically set to the current date and time when the blog post is created.
     - author = a ForeignKey to the User model, which stores the user who creates the blog post – typically the admin account as the user must have staff access.
 
-![ERD Diagram](static/media/ea_erd.png)
+- Comment Model
+    - author = a ForeignKey that relates to the User model, representing the author of the comment.
+    - content = a TextField that stores the content of the comment. A required field.
+    - published = a DateTimeField that stores when the comment is made. Auto-generated. 
+    - blog = a ForeignKey to connect a specific comment to the corresponding blog post.
+
+![ERD Diagram](static/media/ea-erd2.png)
 
 # Technologies
 
@@ -174,7 +192,7 @@ The Blog model, found in the blog app, allows users with staff permissions to cr
 ## Project Tests
 A test driven development process was used during this project, evidenced in the commit history. The following testing was performed manually when the site was deployed. Green was given to an area if the site performed as expected. Red if there was an unexpected outcome.
 - Expectation: 
-    - Functionality - Could products be viewed, added to bag, checked out? Could the user create an account?
+    - Functionality - Could products be viewed, added to bag, checked out? Could the user create an account? Does a user with staff access have full CRUD functionailty over blog posts. Does an authenticated user have full CRUD functionality over their comments? 
     - Appearance - Did all elements display as intended?
     - Links - Do all links work and direct the user where they are supposed to? Do footer links open in a new tab?
 
@@ -239,94 +257,53 @@ In the user’s account, their order history is displayed with each order in its
 
 In the user’s account, the user can fill out the form to set their default delivery info. This will then be stored with their account and the next time the user goes to the checkout page, their delivery info will be automatically filled out with their default address.
 
+- I want to interact with the brand by reading blogs and leaving comments.
+
+When a user is authenticated/has an account, users are able to read blogs and leave comments, edit them if they wish and delete them if they no longer want their commetns displayed.
+
 <img src="static/media/rm-9.png" width="200px">
+<img src="static/media/rm-9a.png" width="200px">
 <br>
 <br>
+
+# Development
+
+I used the following git commands regularly throughout the development process:
+
+1. Git add .
+2. Git commit -m “commit message here”
+3. Git push
+
+This process allowed me to push my code to a remote repository, allowing version control and a safe way of storing the code.
+
+In order to deploy to Heroku which the next session covers, an up to date requirements.txt file and a Procfile is required. These can be generated in the following ways:
+
+requirements.txt:
+1. pip3 freeze > requirements.txt
+
+Procfile:
+1. Create a file named 'Procfile' in the root directory of the Django project.
+2. Inside the file, specify the the command to run the Django app. In regards to this web app, and as we are using gunicorn, the command is:
+
+web: gunicorn enough_already.wsgi:application
+
 
 # Deployment
-To deploy this web application, an account is necessary with [ElephantSQL](https://www.elephantsql.com/), [Amazon Web Services](https://aws.amazon.com/) and [Heroku](https://www.heroku.com). 
+To deply on Heroku:
 
-ElephantSQL
-1. From the Elephant SQL dashboard, click ‘Create New Instance’.
-2. Input name as ‘enough-already’, select plan, select closest region for a data centre, click review then create instance.
-3. From the dashboard, click the database instance just created.
-4. The URL provided will be used in the config vars of the Heroku app.
-
-Heroku
-1. From the Heroku dashboard, click ‘New’.
-2. Name the app and select the closest region then click ‘create app’.
-3. Next, in the settings tab, real config vars and input a key as ‘DATABASE_URL’ and value as the ElephantSQL URL that was created in the previous steps . Click ‘Add’.
-
-Gitpod
-1. Now in the Gitpod workspace, run the following commands in the CLI to install the packages needed for deployment:
-2. pip3 install dj_database_url==0.5.0 psycopg2
-3. pip3 install gunicon
-4. pip3 install boto3
-5. pip3 install django-storages
-6. pip3 freeze > requirements.txt
-7. Create a Procfile and input: ‘web: gunicorn enough_already.wsgi:application’
-
-ElephantSQL
-1. From the dashboard, the database must now be confirmed. To do this, click ‘Browser’ from the left navigation bar.
-2. Click the table query button and select ‘auth_user (public)’ from the dropdown menu. Click ‘Execute’. 
-3. Super User details should now be displayed. This also confirms your database is now ready to hold data.
-
-Gitpod
-1. Back to Gitpod. Login to heroku through the CLI by running: ‘heroku login’.
-2. Next, run ‘heroku config:set DISABLE_COLLECTSTATIC=1’ in the CLI to stop it running static files during deployment.
-3. Add the heroku URL to ALLOWED_HOSTS and CSRF_TRUSTED_ORIGINS in the project level settings.
-
-Heroku
-1. Once again, in the config vars in the settings tab, add a generated Django Secret Key. Enter the key as ‘SECRET_KEY’ and the value as the generated Django key that can be made from any Django key generator.
-
-With all of these steps followed, and all code pushed to Github (with automatic deployment set up in Heroku), the site should be deployed, however, static files must still be set up. This is done through Amazon Web Services - S3.
-
-AWS
-1. From the Management Console, search services for S3 and when found, click, ‘Create Bucket’.
-2. Name the bucket ‘enough-already’ and select the closest region. Uncheck ‘Block all public access’ and check the box to agree to the bucket being public. Click ‘Create Bucket’.
-3. Click on the bucket that was just created. Go to properties and turn on static website hosting, entering index.html and error.html in the corresponding inputs. 
-4. In the permission section, paste the below snippet to the CORS configuration then click save:
-
-<img src="static/media/rm-10.png" width="200px">
-
-5. Next, navigate to bucket policy and click policy generator. Select the following settings: 
-    - Select type of Policy: S3 Bucket Policy
-    - In the ‘Principal’ input, input ‘*’.  
-    - Under the actions dropdown, select ‘Get Object’
-    - Copy the ARN (located in the bucket settings page in the bucket policy section) and paste it into the ARN input on the form.
-    - Click ‘Add statement’ then ‘Generate Policy’.
-    - Add ‘/*’ to the end of the Resource value (the ARN).
-6. Copy and paste the JSON policy to the bucket policy setting. Click Save.
-7. Navigate to the Access Control List, click edit and check the box enabling ‘Everyone (public access).
-8. Navigate back to services and search ‘IAM’.
-9. Click ‘User Groups’ from the sidebar.
-10. Set group name as ‘manage-enough-already’.
-11. Import managed policies then import ‘Amazon S3 Full Access’.
-12. Now, using the ARN from the S3 bucket (found in bucket policy), paste it into ‘Resource’ value.
-13. Review the policy by naming and providing a brief description then click create policy.
-14. Now this policy must be attached to the group we already created. Click ‘User Groups’, select the group we made earlier, navigate to the permissions tab > add permissions > attach policies and attach the policy we just created and click ‘Add Permissions’.
-15. Add user, entering ‘enough-already-staticfiles-user’ and give programmatic access. Click next and add our user to our group. Click through to create user.
-16. Download .csv file.
-
-Gitpod
-1. Add ‘storages’ to the settings file in installed apps.
-2. Paste the following snippet into settings:
-
-<img src="static/media/rm-11.png" width="400px">
-
-Heroku
-1. Add the AWS keys and values referred to in the previous code snippet. These will all be found in the S3 Bucket and the .csv file downloaded earlier. Also, add another config var, that is simply USE_AWS and True.
-2. Add Stripe Publishable and Secret keys to config vars (Remember to changed the endpoint URL in stripe for webhooks)
-3. Remove the ‘Disable Collect Static’ variable from the config vars.
-
-Gitpod
-1. Add the following code snippet to a new file called ‘custom_storages.py’. 
-
-<img src="static/media/rm-12.png" width="400px">
-
-2. Push code to Github to redeploy the site with static files.
-
+1. From the Heroku dashboard, click on the "New" button and select "Create new app".
+2. Choose a meaningful name for your app and select the region closest to your location.
+3. Access the "Settings" tab.
+4. Click on "Reveal Config Vars".
+5. Add all necessary key-value pairs from the .env file. Make sure not to include DEBUG and DEVELOPMENT variables.
+6. Click on "Add buildpack" and add "python" from the list. Click "save".
+7. Access the "Deploy" tab.
+8. Select "GitHub - Connect to GitHub" from the deployment methods and click on "Connect to GitHub".
+9. Search for the relevant GitHub repository and click it.
+10. Choose automatic deploys to allow the deployed site to be updated each time code is pushed to GiHub.
+11. Click "View" to view the deployed site.
 The site is now deployed!
+
 
 # Forking the GitHub Repository 
 To create a copy of the project to experiment with changes in a safe way that will not affect the original site:
