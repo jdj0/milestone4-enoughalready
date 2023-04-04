@@ -236,7 +236,7 @@ Once a product card is clicked, the user is taken to the details of the product,
 ### As a returning user...
 - I may want to create an account with the business if I am interested in the brand.
 
-If the user is not logged in or does not yet have an account, the user is given the option of registering or logging into an account. After clicking register, the user is given a form to complete and if the input is valid, the user will be granted an account (email verification has been turned off for ease of use while marking).
+If the user is not logged in or does not yet have an account, the user is given the option of registering or logging into an account. After clicking register, the user is given a form to complete and if the input is valid, the user will be granted an account after their email address has been verified.
 
 - I want to be able to purchase items by adding them to a shopping bag, then processing through a checkout.
 
