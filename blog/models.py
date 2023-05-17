@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 
 class Blog(models.Model):
-    title = models.CharField(max_length=99)
+    title = models.CharField(max_length=98)
     subtitle = models.CharField(null=True, max_length=99)
     content = models.TextField()
     image = models.ImageField(upload_to="images/")
