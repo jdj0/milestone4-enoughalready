@@ -54,8 +54,7 @@ def blog_create(request):
             blog = form.save(commit=False)
             blog.author = request.user
             blog.published = timezone.now()
-            if 'image' in request.FILES:
-                blog.image = request.FILES['image']
+            blog.image = request.FILES['image']
             blog.save()
             messages.success(request, 'Blog Published')
             return redirect('blog')
