@@ -35,7 +35,7 @@ DEBUG = 'DEVELOPMENT' in os.environ
 ALLOWED_HOSTS = ['enough-already.herokuapp.com', 'localhost']
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://8000-jdj0-milestone4enough-gpbb20z326m.ws-eu93.gitpod.io',
+    'https://8000-jdj0-milestone4enough-gpbb20z326m.ws-eu97.gitpod.io',
     'https://enough-already.herokuapp.com'
     ]
 
@@ -114,10 +114,10 @@ WSGI_APPLICATION = 'enough_already.wsgi.application'
 
 # Database
 
-if 'DATABASE_URL' in os.environ:
-    DATABASES = {
-        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
-    }
+
+DATABASES = {
+    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
