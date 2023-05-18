@@ -45,7 +45,7 @@ def blog_post(request, pk):
 
 @staff_member_required
 def blog_create(request):
-    """ A view that allows staff to create blogn posts  """
+    """ A view that allows staff to create blog posts  """
 
     form = BlogCreateForm(request.POST or None)
 
@@ -54,7 +54,7 @@ def blog_create(request):
             blog = form.save(commit=False)
             blog.author = request.user
             blog.published = timezone.now()
-            blog.image = request.FILES['image']
+            blog.image = form.cleaned_data['image']
             blog.save()
             messages.success(request, 'Blog Published')
             return redirect('blog')
