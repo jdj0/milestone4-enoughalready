@@ -5,7 +5,8 @@ from django.views.generic.edit import DeleteView
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib import messages
 from .models import Blog, Comment
-from .forms import BlogUpdateForm, BlogCreateForm, CommentForm, CommentUpdateForm
+from .forms import BlogUpdateForm, BlogCreateForm, CommentForm, \
+    CommentUpdateForm
 
 
 def blog(request):
