@@ -47,14 +47,14 @@ def blog_post(request, pk):
 def blog_create(request):
     """ A view that allows staff to create blog posts  """
 
-    form = BlogCreateForm(request.POST or None)
+    form = BlogCreateForm(request.POST, request.FILES)
 
     if request.method == 'POST':
         if form.is_valid():
             blog = form.save(commit=False)
             blog.author = request.user
             blog.published = timezone.now()
-            blog.image = form.cleaned_data['image']
+            blog.image = request.FILES['image']
             blog.save()
             messages.success(request, 'Blog Published')
             return redirect('blog')
